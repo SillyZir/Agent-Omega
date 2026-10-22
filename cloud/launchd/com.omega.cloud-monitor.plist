@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Published copy: the absolute repo path is sanitized to /PATH/TO/Agent-Omega. -->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.omega.cloud-monitor</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/PATH/TO/Agent-Omega/cloud/monitor_daily.sh</string>
+        <string>--skip-if-done</string>
+    </array>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>9</integer>
+        <key>Minute</key>
+        <integer>17</integer>
+    </dict>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>WorkingDirectory</key>
+    <string>/PATH/TO/Agent-Omega</string>
+    <key>StandardOutPath</key>
+    <string>/PATH/TO/Agent-Omega/logs/monitor/launchd.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/PATH/TO/Agent-Omega/logs/monitor/launchd.err.log</string>
+</dict>
+</plist>
