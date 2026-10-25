@@ -11,7 +11,7 @@ self-examination, not on the absence of found bugs.
 A ground-truth backtest proved the v1 system's success metric measured
 nothing (zero PRs ever submitted; 0/7 file-localization match against
 merged human fixes). v1 was discarded; the agentic v2 architecture was
-built and validated stage-by-stage (localization 93% top-1; fix quality
+built and validated stage-by-stage (localization 78.4% top-1 on 37 issues; fix quality
 benchmarked against merged human fixes; execution validated against
 maintainers' own tests).
 

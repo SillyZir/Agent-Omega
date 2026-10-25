@@ -87,10 +87,13 @@ bound at approval; the amendments are recorded deltas, not silent edits.
   stale PR bodies on reworked PRs), so all agent-vs-human comparisons in
   it are descriptive. Full report:
   `knowledge/patch_quality_audit_v2_2026-09.md`.
-- **Localization/fix benchmarks** (historical, offline): 93% top-1 file
-  localization vs 11% for the discarded keyword system; 49% of fixes
-  judged equivalent to the merged human fix; 4/5 decisive patches passed
-  maintainers' own tests. Benchmarks, not production claims.
+- **Localization/fix benchmarks** (historical, offline, 37 issues): 78.4%
+  top-1 file localization (29/37) vs 10.8% (4/37) for the discarded keyword
+  system; 45.9% of fixes (17/37) judged equivalent to the merged human fix by
+  an LLM judge, not by test execution; of 45 validation runs, 4 produced a
+  test-verified fix, 9 demonstrably failed, and 32 were environmentally
+  inconclusive. Every denominator here is all 37 issues or all 45 runs.
+  Benchmarks, not production claims.
 - **Durability**: all five earliest merged patches survived upstream at
   last offline measurement (seam divergence normal); a prospective
   tracker (d3) now watches every merge, with the first honest

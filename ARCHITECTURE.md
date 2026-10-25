@@ -83,9 +83,9 @@ Bash**, issue text only) that explores a real checkout and produces a patch.
 | Stage | Question | Result | Artifact |
 |---|---|---|---|
 | **1 — Backtest** | Did the old pipeline actually fix things? | No. It never submitted a PR (`create_pr` never called; `pr_url=""`), and keyword localization matched the human fix file **0/7** times. "Local-test-pass" is a benign-ness check, not correctness. | `scripts/backtest_outcomes.py` → `backtest_results.jsonl` |
-| **1 — Localization** | Keyword vs agentic file-finding | keyword **top-1 11%** vs agentic **88–93%** (top-3 100%) on 37 ground-truth issues | `scripts/benchmark_localization*.py` |
-| **2 — Fix generation** | Do agentic patches match merged human fixes? | **any_exact 80%**, judge **equivalent 49%**, Go ≈ non-Go (no language ceiling) | `scripts/benchmark_fix_agentic.py` → `benchmark_fix_agentic_results.jsonl` |
-| **3 — Execution** | Do patches pass the maintainer's own tests? | **4/5 of decisive runs validated**; the comparison judge's `equivalent` verdict = **3/3** execution-validated (calibrated quality proxy) | `scripts/benchmark_validate_tests.py` → `benchmark_validation_results.jsonl` |
+| **1 — Localization** | Keyword vs agentic file-finding | keyword **top-1 10.8%** (4/37) vs agentic **78.4%** (29/37), top-3 **89.2%** (33/37), on 37 ground-truth issues; the 4 no-prediction runs count as failures | `scripts/benchmark_localization*.py` |
+| **2 — Fix generation** | Do agentic patches match merged human fixes? | patch touches a human-fix file **75.7%** (28/37); LLM judge **equivalent 45.9%** (17/37); Go ≈ non-Go (no language ceiling). Both denominators are all 37 issues — the 2 errored runs are failures, not exclusions | `scripts/benchmark_fix_agentic.py` → `benchmark_fix_agentic_results.jsonl` |
+| **3 — Execution** | Do patches pass the maintainer's own tests? | **4 of 45** runs produced a test-verified fix — 9 demonstrable failures, 32 environmentally inconclusive (**4/13** of decisive runs). Among `equivalent`-judged issues, **3 of 6** decisive runs validated (3 of 17 equivalent-judged overall) | `scripts/benchmark_validate_tests.py` → `benchmark_validation_results.jsonl` |
 
 Validated patches: `go-ethereum#34692`, `go-ethereum#35018`, `grafana#125774`,
 `terraform#38671`.

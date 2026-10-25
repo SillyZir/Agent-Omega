@@ -11,7 +11,8 @@ bug (fix generation). It is deliberately constrained:
   * a turn budget and a wall-clock timeout bound each session.
 
 These constraints are part of the contract that produced the benchmark numbers
-(localization 88–93% top-1, fix any_exact 80%) — do not relax them.
+(localization 78.4% top-1 and 89.2% top-3 on 37 issues; patches touch a
+human-fix file 75.7% of the time) — do not relax them.
 
 Both the benchmark scripts (``scripts/benchmark_fix_agentic.py``,
 ``scripts/benchmark_localization_agentic.py``) and the production pipeline

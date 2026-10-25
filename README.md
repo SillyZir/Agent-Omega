@@ -1,11 +1,18 @@
 # Agent Omega
 
 **An autonomous software-engineering system that discovers real open-source bugs,
-generates verified fixes, and ships them upstream — with 11 merged pull requests in
-production repositories including Caddy, rclone, go-ethereum, and k3s.**
+generates verified fixes, and ships them upstream — with 10 pull requests merged into
+Caddy, rclone, go-ethereum, and k3s, out of 15 submitted to those four projects.**
 
-`11 merged PRs · 22 tracked PRs across 11 repos · 16 fail-closed ship gates ·
+`10 merged into those four (of 15 submitted) · 11 merged code changes across all
+external repos · 74 PRs submitted to 30 external repos · 16 fail-closed ship gates ·
 1 fully-autonomous merged ship · 3,000+ commits`
+
+Pull-request counts were read from the GitHub API on 2026-10-24, exclude self-owned
+repositories, and move as PRs are opened and closed. A twelfth merged PR
+(`naimkatiman/tradeclaw#48`, April 2026) is a documentation edit that predates this
+system and is not counted as a repair. The benchmark figures below are recomputed
+from the frozen result files named beside them.
 
 Omega's design thesis: a coding model can produce plausible patches, but **reasoning does
 not confer authority**. Every model output is a *proposal*; only a deterministic Python
@@ -131,9 +138,17 @@ Full factual record and what it does/doesn't prove:
   (`agent/regression_harness.py`); generated regression tests must fail on base and
   pass on the patch, and survive an independent fix-blind validity judge.
 - **Measurement** — a ground-truth benchmark suite (`scripts/benchmark_*.py`) retained
-  as a permanent regression harness: agentic localization hits 88–93% top-1 file match
-  (100% top-3) vs 11% for the keyword baseline it replaced; fix generation was validated
-  against merged human fixes before going live.
+  as a permanent regression harness. On 37 issues scored against the maintainers' own
+  merged fixes, agentic localization names the correct file top-1 on 78.4% (29/37) and
+  within its top 3 on 89.2% (33/37), against 10.8% (4/37) for the keyword baseline it
+  replaced — 7.3x on the identical issue set. The four issues where the searcher
+  returned no prediction at all are counted as failures, not excluded. On fix
+  generation, the patch touches a file the human fix touched on 75.7% (28/37), and an
+  LLM judge — not test execution — rated 45.9% (17/37) equivalent to the merged human
+  fix. Of 45 end-to-end validation runs against the projects' own test suites, 4
+  produced a test-verified fix, 9 demonstrably failed, and 32 were environmentally
+  inconclusive; that inconclusive rate is a finding about the harness, not a result to
+  average away.
 
 ## How it's operated
 
